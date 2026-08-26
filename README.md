@@ -1,4 +1,4 @@
-# Thermal Control Digital Twin
+# Thermal Control Simulator
 
 This repository contains a closed-loop digital twin built to manage the thermal processing of a sapphire wafer. It simulates physical temperature dynamics and compares two different control strategies: Proportional-Integral-Derivative (PID) and Linear Quadratic Gaussian (LQG). The system tracks physical uncertainties in real-time, specifically unmodeled variances in mass and absorptivity.
 
