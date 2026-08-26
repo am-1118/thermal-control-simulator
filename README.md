@@ -51,12 +51,11 @@ While simple, PID struggles to elegantly handle physical actuator limits. It als
 
 ---
 
-## 4. Optimal Architecture: LQG Control
+## 4. Optimal Architecture: LQR + EKF
 
-The second architecture replaces the PID loop with a Linear Quadratic Integral (LQI) controller, forming a complete LQG system. 
-
+The second architecture replaces the PID loop with a combination of Linear Quadratic Regulator and Extended Kalman Filter.
 ### Reasons for Selection
-LQG provides mathematically optimal control by balancing tracking performance against energy consumption. The interface allows tuning of the $Q$ matrix (penalizing state and integral errors) and the $R$ matrix (penalizing control effort). This inherently minimizes actuator chatter and guarantees zero steady-state error.
+This combination provides mathematically optimal control by balancing tracking performance against energy consumption. The interface allows tuning of the $Q$ matrix (penalizing state and integral errors) and the $R$ matrix (penalizing control effort). This inherently minimizes actuator chatter and guarantees zero steady-state error.
 
 ### Known Flaws
 The system exposes the Kalman Filter tuning paradox. Setting the EKF process noise ($Q$) to 0.02 forces the filter to heavily trust its internal model, which successfully filters sensor noise but introduces a mathematical bias when physical mutations occur. Additionally, setting the RLS persistent excitation threshold too tight (1.5 K/s) causes the estimator to accidentally digest steady-state noise, leading to degraded parameter tracking.
